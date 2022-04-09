@@ -1,0 +1,52 @@
+{% extends 'base.html.twig'%}
+
+
+{% block body %}
+    <h1 class="text-center">Add invoice</h1>
+{% if message %}
+    <div class="col-6 mx-auto alert alert-success text-center">{{ message }}</div>
+{% endif %}
+{% if errors %}
+    <div class="col-6 mx-auto alert alert-danger text-center">{{ message }}
+
+    {% for e in errors %}
+        {{ e.message }}
+    {% endfor %}
+    </div>
+{% endif %}
+
+    <form method="post"  action="{{path ('invoice') }}">
+        <div class="row col-10 mx-auto p-4 mt-3 mb-4"  style="background-color: #EEEEEE !important; border-radius: 15px">
+
+            <div class="col-4">
+                <label>Date</label><br>
+                <input required type="date" name="invoiceDate" class="form-control">
+            </div>
+            <div class="col-4">
+                <label>Number</label><br>
+                <input autocomplete="off" required min="1" type="number" name="invoiceNumber" class="form-control">
+            </div>
+            <div class="col-4">
+                <label>Customer ID</label><br>
+                <input autocomplete="off" required min="1" type="number" name="customerId" class="form-control">
+            </div>
+
+        </div>
+        <div >
+
+        <div class="row col-10 mx-auto" id="invoiceLine">
+        <h1>Invoice lines</h1>
+            <div class="col-2 "><br>
+                <button type="button" onclick="addInvoice()" class="btn btn-primary btn-sm"><i class="fa fa-plus mr-2"></i>Add invoice Line</button>
+
+            </div>
+
+    </div>
+            <div class="col-10 mx-auto " style="text-align: right"><br>
+                <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
+            </div>
+    </div>
+
+    </form>
+
+{% endblock %}
